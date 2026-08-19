@@ -97,3 +97,21 @@ Protected routes (require token):
 
 - `.env` is gitignored.
 - If Vite runs on another port (for example 5174), backend CORS must allow that origin.
+
+## Screenshots
+
+### Home Page
+
+![Home Page](docs/screenshots/home.png)
+
+### Login Page
+
+![Login Page](docs/screenshots/login.png)
+
+### Register Page
+
+![Register Page](docs/screenshots/register.png)
+
+### Dashboard
+
+![Dashboard](docs/screenshots/dashboard.png)
