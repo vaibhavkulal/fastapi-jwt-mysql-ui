@@ -1,13 +1,19 @@
 import { useEffect, useState } from "react";
 import apiClient from "../../api/client";
 import { useAuth } from "../../context/AuthContext";
+import { useNavigate } from "react-router-dom";
 
 function Dashboard() {
+  const navigate = useNavigate();
   const { logout } = useAuth();
 
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
+  const handleLogout = () => {
+    logout();
+    navigate("/", { replace: true });
+  };
 
   useEffect(() => {
     const fetchUser = async () => {
@@ -47,12 +53,10 @@ function Dashboard() {
     <div className="min-h-screen bg-gray-100">
       <header className="border-b bg-white">
         <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
-          <h1 className="text-xl font-bold">
-            FastAPI JWT
-          </h1>
+          <h1 className="text-xl font-bold">FastAPI JWT</h1>
 
           <button
-            onClick={logout}
+            onClick={handleLogout}
             className="rounded-lg bg-black px-4 py-2 text-sm text-white hover:bg-gray-800"
           >
             Logout
@@ -62,9 +66,7 @@ function Dashboard() {
 
       <main className="mx-auto max-w-6xl px-6 py-10">
         <div className="rounded-xl bg-white p-8 shadow">
-          <h2 className="text-2xl font-bold">
-            Welcome, {user?.username}
-          </h2>
+          <h2 className="text-2xl font-bold">Welcome, {user?.username}</h2>
 
           <p className="mt-2 text-gray-500">
             You are successfully authenticated.
@@ -72,18 +74,15 @@ function Dashboard() {
 
           <div className="mt-6 space-y-2">
             <p>
-              <strong>Username:</strong>{" "}
-              {user?.username}
+              <strong>Username:</strong> {user?.username}
             </p>
 
             <p>
-              <strong>Email:</strong>{" "}
-              {user?.email}
+              <strong>Email:</strong> {user?.email}
             </p>
 
             <p>
-              <strong>Role:</strong>{" "}
-              {user?.role}
+              <strong>Role:</strong> {user?.role}
             </p>
           </div>
         </div>
